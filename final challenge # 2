@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class WeatherDataTracker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double[][] temperatures = new double[3][7]; // 3 cities, 7 days
+
+        // Input the temperature for each city and day
+        for (int city = 0; city < 3; city++) {
+            System.out.println("Enter temperatures for City " + (city + 1) + ": ");
+            for (int day = 0; day < 7; day++) {
+                System.out.print("Day " + (day + 1) + ": ");
+                temperatures[city][day] = scanner.nextDouble();
+            }
+        }
+
+        // Calculate and display the average and highest temperature of the cities
+        for (int city = 0; city < 3; city++) {
+            double total = 0;
+            double highestTemp = temperatures[city][0]; // start off with first day's temperature
+
+            for (int day = 0; day < 7; day++) {
+                total += temperatures[city][day];
+                if (temperatures[city][day] > highestTemp) {
+                    highestTemp = temperatures[city][day];
+                }
+            }
+
+            double averageTemp = total / 7;
+            System.out.print("City " + (city + 1) + " - Average Temperature: " + averageTemp);
+            System.out.println(", Highest Temperature: " + highestTemp);
+        }
+        scanner.close();
+    }
+}
